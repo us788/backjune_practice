@@ -2,19 +2,26 @@
 #include<string.h>
 #include<stdlib.h>
 
+int compare(const void *a, const void *b);
+
 int main(){
     int a;
-    scanf("%d",&a);
-    int arr[100001]={0};
-    int l;
-    for(int i = 0 ; i<a; i++){
-        scanf("%d",&l);
-        arr[l]++;
+    scanf("%d", &a);
+    int b,c;
+    int index = 0;
+    int arr[10];
+    while(a!=0){
+        arr[index]=a%10;
+        index++;
+        a=a/10;
     }
-    for(int i = 0 ; i<100001; i++){
-        for(int j = 0; j<arr[i];j++){
-            printf("%d\n",i);
-        }
+    qsort(arr,index, sizeof(int), compare);
+
+    for (int i = 0; i < index; i++){
+        printf("%d", arr[i]);
     }
 
+}
+int compare(const void *a, const void *b) {
+    return (*(int*)b - *(int*)a);
 }
